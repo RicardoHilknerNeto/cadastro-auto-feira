@@ -104,6 +104,7 @@ function Form() {
               value={formData.name}
               onChange={handleInputChange}
               ref={nameRef}
+              required
             />
           </FormGroup>
 
@@ -118,6 +119,7 @@ function Form() {
               value={formData.motherName}
               onChange={handleInputChange}
               ref={motherNameRef}
+              required
             />
           </FormGroup>
 
@@ -131,8 +133,9 @@ function Form() {
               value={formData.choice}
               onChange={handleInputChange}
               ref={choiceRef}
+              required
             >
-              <option value="">Selecione...</option>
+              <option value="" disabled hidden>Selecione...</option>
               <option value="sim">Sim</option>
               <option value="nao">Não</option>
             </select>
@@ -149,6 +152,7 @@ function Form() {
               value={formData.email}
               onChange={handleInputChange}
               ref={emailRef}
+              required
             />
           </FormGroup>
 
@@ -164,6 +168,7 @@ function Form() {
               value={formData.phoneNumber}
               onChange={handleInputChange}
               ref={phoneNumberRef}
+              required
             />
           </FormGroup>
 
