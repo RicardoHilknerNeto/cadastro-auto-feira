@@ -142,19 +142,25 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-            <Label htmlFor="date">Data de Nascimento:</Label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              className="form-control"
-            //   placeholder="Digite seu e-mail..."
-              value={formData.date}
-              onChange={handleInputChange}
-              ref={dateRef}
-              required
-            />
-          </FormGroup>
+      <Label htmlFor="date">Data de Nascimento:</Label>
+      <InputMask
+        mask="99/99/9999"
+        maskChar="_"
+        id="date"
+        name="date"
+        className="form-control"
+        placeholder="dd/mm/aaaa"
+        value={formData.date}
+        onChange={(e) => {
+          const enteredDate = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+          const formattedDate = enteredDate.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+          handleInputChange({ target: { name: 'date', value: formattedDate } });
+        }}
+        required
+      />
+    </FormGroup>
+
+
 
           <FormGroup className="mb-3">
             <Label htmlFor="phoneNumber">Número de Celular (com DDD):</Label>
