@@ -31,14 +31,14 @@ function Form() {
   const nameRef = useRef(null);
   const motherNameRef = useRef(null);
   const choiceRef = useRef(null);
-  const emailRef = useRef(null);
+  const dateRef = useRef(null);
   const phoneNumberRef = useRef(null);
 
   // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     name: '',
     motherName: '',
-    email: '',
+    date: '',
     choice: '',
     phoneNumber: '',
   });
@@ -65,7 +65,7 @@ function Form() {
     var name = formData.name;
     var motherName = formData.motherName;
     var choice = formData.choice;
-    var email = formData.email;
+    var date = formData.date;
     var phoneNumber = formData.phoneNumber;
   
     var url =
@@ -79,8 +79,8 @@ function Form() {
       "Possui CNH: " +
       choice +
       ",%0a" +
-      "Email: " +
-      email +
+      "Data de Nascimento: " +
+      date +
       ",%0a" +  // Remova o ponto e vírgula desta linha
       "Número: " +
       phoneNumber;
@@ -142,16 +142,16 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-            <Label htmlFor="email">E-mail:</Label>
+            <Label htmlFor="date">Data de Nascimento:</Label>
             <input
-              type="email"
-              id="email"
-              name="email"
+              type="date"
+              id="date"
+              name="date"
               className="form-control"
-              placeholder="Digite seu e-mail..."
-              value={formData.email}
+            //   placeholder="Digite seu e-mail..."
+              value={formData.date}
               onChange={handleInputChange}
-              ref={emailRef}
+              ref={dateRef}
               required
             />
           </FormGroup>
