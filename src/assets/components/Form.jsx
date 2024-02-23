@@ -70,7 +70,7 @@ function Form() {
   
     var url =
       "https://wa.me/11947946525?text=" +
-      "Name: " +
+      "Nome: " +
       name +
       ",%0a" +
       "Nome da mãe: " +
