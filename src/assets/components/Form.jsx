@@ -3,7 +3,12 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import InputMask from 'react-input-mask';
 import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importando o CSS do Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Title = styled.h1`
+  text-align: center;
+  margin: 4vh 0;
+`;
 
 const FormWrapper = styled.div`
   max-width: 400px;
@@ -23,8 +28,6 @@ const ButtonAlign = styled.div`
   text-align: center;
 `;
 
-
-
 // Componente Header
 function Form() {
   // Use useRef para criar refs
@@ -33,6 +36,11 @@ function Form() {
   const choiceRef = useRef(null);
   const dateRef = useRef(null);
   const phoneNumberRef = useRef(null);
+  const marcaRef = useRef(null);
+  const modelRef = useRef(null);
+  const anoRef = useRef(null);
+  const placaRef = useRef(null);
+  const creditoRef = useRef(null);
 
   // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
@@ -41,6 +49,11 @@ function Form() {
     date: '',
     choice: '',
     phoneNumber: '',
+    marca: '',
+    model: '',
+    ano: '',
+    placa: '',
+    credito: '',
   });
 
   // Função para lidar com a mudança nos inputs do formulário
@@ -57,7 +70,7 @@ function Form() {
     e.preventDefault(); // Impede o recarregamento da página ao enviar o formulário
     // Aqui você pode adicionar a lógica para lidar com os dados do formulário
     console.log('Dados do formulário:', formData);
-    gotowhatsapp(formData); // Chama a função gotowhatsapp ao enviar o formulário
+    gotowhatsapp(formData); 
   };
 
   // Função para redirecionar para o WhatsApp
@@ -67,6 +80,11 @@ function Form() {
     var choice = formData.choice;
     var date = formData.date;
     var phoneNumber = formData.phoneNumber;
+    var marcaRef = formData.marca;
+    var modelRef = formData.model;
+    var anoRef = formData.ano;
+    var placaRef = formData.placa;
+    var creditoRef = formData.credito;
   
     var url =
       "https://wa.me/11947946525?text=" +
@@ -81,16 +99,31 @@ function Form() {
       ",%0a" +
       "Data de Nascimento: " +
       date +
-      ",%0a" +  // Remova o ponto e vírgula desta linha
+      ",%0a" +  
       "Número: " +
-      phoneNumber;
+      phoneNumber +
+      ",%0a" +  
+      "Marca do veiculo: " +
+      marcaRef+
+      ",%0a" +  
+      "Modelo: " +
+      modelRef+
+      ",%0a" +  
+      "Ano: " +
+      anoRef+
+      ",%0a" +  
+      "Placa: " +
+      placaRef+
+      ",%0a" +  
+      "Credito: " +
+      creditoRef;
   
     window.open(url, "_blank").focus();
-}
-
+  }
 
   return (
     <>
+      <Title>Dados Pessoais:</Title>
       <FormWrapper>
         <form onSubmit={handleSubmit}>
           <FormGroup className="mb-3">
@@ -142,25 +175,23 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-      <Label htmlFor="date">Data de Nascimento:</Label>
-      <InputMask
-        mask="99/99/9999"
-        maskChar="_"
-        id="date"
-        name="date"
-        className="form-control"
-        placeholder="dd/mm/aaaa"
-        value={formData.date}
-        onChange={(e) => {
-          const enteredDate = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-          const formattedDate = enteredDate.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
-          handleInputChange({ target: { name: 'date', value: formattedDate } });
-        }}
-        required
-      />
-    </FormGroup>
-
-
+            <Label htmlFor="date">Data de Nascimento:</Label>
+            <InputMask
+              mask="99/99/9999"
+              maskChar="_"
+              id="date"
+              name="date"
+              className="form-control"
+              placeholder="dd/mm/aaaa"
+              value={formData.date}
+              onChange={(e) => {
+                const enteredDate = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                const formattedDate = enteredDate.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+                handleInputChange({ target: { name: 'date', value: formattedDate } });
+              }}
+              required
+            />
+          </FormGroup>
 
           <FormGroup className="mb-3">
             <Label htmlFor="phoneNumber">Número de Celular (com DDD):</Label>
@@ -175,6 +206,78 @@ function Form() {
               onChange={handleInputChange}
               ref={phoneNumberRef}
               required
+            />
+          </FormGroup>
+
+          <Title>Dados do Veiculo:</Title>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="marca">Marca:</Label>
+            <input
+              type="text"
+              id="marca"
+              name="marca"
+              className="form-control"
+              placeholder="Digite a marca do Veiculo"
+              value={formData.marca}
+              onChange={handleInputChange}
+              ref={marcaRef}
+            />
+          </FormGroup>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="model">Modelo:</Label>
+            <input
+              type="text"
+              id="model"
+              name="model"
+              className="form-control"
+              placeholder="Digite o modelo do Veiculo"
+              value={formData.model}
+              onChange={handleInputChange}
+              ref={modelRef}
+            />
+          </FormGroup>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="ano">Ano do Veiculo:</Label>
+            <input
+              id="ano"
+              name="ano"
+              className="form-control"
+              placeholder="Digite o ano do veiculo"
+              value={formData.ano}
+              onChange={handleInputChange}
+              onInput={(event) => event.target.value = event.target.value.replace(/[^0-9]/g, '')}
+            />
+          </FormGroup>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="placa">Placa do veiculo:</Label>
+            <input
+              type="text"
+              id="placa"
+              name="placa"
+              className="form-control"
+              placeholder="Digite a placa do veiculo"
+              value={formData.placa}
+              onChange={handleInputChange}
+              ref={placaRef}
+            />
+          </FormGroup>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="credito">Valor do credito:</Label>
+            <InputMask
+              mask="R$ 99999999999"
+              maskChar=""
+              id="credito"
+              name="credito"
+              className="form-control"
+              placeholder="Digite o valor do credito"
+              value={formData.credito}
+              onChange={handleInputChange}
+              ref={creditoRef}
             />
           </FormGroup>
 
