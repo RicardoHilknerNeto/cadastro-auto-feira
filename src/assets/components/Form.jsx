@@ -80,12 +80,12 @@ function Form() {
     var choice = formData.choice;
     var date = formData.date;
     var phoneNumber = formData.phoneNumber;
-    var marcaRef = formData.marca;
-    var modelRef = formData.model;
-    var anoRef = formData.ano;
-    var placaRef = formData.placa;
-    var creditoRef = formData.credito;
-  
+    var marca = formData.marca;  // Corrigido de "marcaRef" para "marca"
+    var model = formData.model;  // Corrigido de "modelRef" para "model"
+    var ano = formData.ano;      // Corrigido de "anoRef" para "ano"
+    var placa = formData.placa;  // Corrigido de "placaRef" para "placa"
+    var credito = formData.credito;  // Corrigido de "creditoRef" para "credito"
+
     var url =
       "https://wa.me/11947946525?text=" +
       "Nome: " +
@@ -103,21 +103,21 @@ function Form() {
       "Número: " +
       phoneNumber +
       ",%0a" +  
-      "Marca do veiculo: " +
-      marcaRef+
+      "Marca do veículo: " +
+      marca +
       ",%0a" +  
       "Modelo: " +
-      modelRef+
+      model +
       ",%0a" +  
       "Ano: " +
-      anoRef+
+      ano +
       ",%0a" +  
       "Placa: " +
-      placaRef+
+      placa +
       ",%0a" +  
-      "Credito: " +
-      creditoRef;
-  
+      "Crédito: " +
+      credito;
+
     window.open(url, "_blank").focus();
   }
 
@@ -209,7 +209,7 @@ function Form() {
             />
           </FormGroup>
 
-          <Title>Dados do Veiculo:</Title>
+          <Title>Dados do Veículo:</Title>
 
           <FormGroup className="mb-3">
             <Label htmlFor="marca">Marca:</Label>
@@ -218,7 +218,7 @@ function Form() {
               id="marca"
               name="marca"
               className="form-control"
-              placeholder="Digite a marca do Veiculo"
+              placeholder="Digite a marca do veículo"
               value={formData.marca}
               onChange={handleInputChange}
               ref={marcaRef}
@@ -232,7 +232,7 @@ function Form() {
               id="model"
               name="model"
               className="form-control"
-              placeholder="Digite o modelo do Veiculo"
+              placeholder="Digite o modelo do veículo"
               value={formData.model}
               onChange={handleInputChange}
               ref={modelRef}
@@ -240,12 +240,12 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-            <Label htmlFor="ano">Ano do Veiculo:</Label>
+            <Label htmlFor="ano">Ano do Veículo:</Label>
             <input
               id="ano"
               name="ano"
               className="form-control"
-              placeholder="Digite o ano do veiculo"
+              placeholder="Digite o ano do veículo"
               value={formData.ano}
               onChange={handleInputChange}
               onInput={(event) => event.target.value = event.target.value.replace(/[^0-9]/g, '')}
@@ -253,13 +253,13 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-            <Label htmlFor="placa">Placa do veiculo:</Label>
+            <Label htmlFor="placa">Placa do veículo:</Label>
             <input
               type="text"
               id="placa"
               name="placa"
               className="form-control"
-              placeholder="Digite a placa do veiculo"
+              placeholder="Digite a placa do veículo"
               value={formData.placa}
               onChange={handleInputChange}
               ref={placaRef}
@@ -267,14 +267,14 @@ function Form() {
           </FormGroup>
 
           <FormGroup className="mb-3">
-            <Label htmlFor="credito">Valor do credito:</Label>
+            <Label htmlFor="credito">Valor do crédito:</Label>
             <InputMask
               mask="R$ 99999999999"
               maskChar=""
               id="credito"
               name="credito"
               className="form-control"
-              placeholder="Digite o valor do credito"
+              placeholder="Digite o valor do crédito"
               value={formData.credito}
               onChange={handleInputChange}
               ref={creditoRef}
