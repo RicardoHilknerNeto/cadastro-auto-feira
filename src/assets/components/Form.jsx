@@ -41,10 +41,12 @@ function Form() {
   const anoRef = useRef(null);
   const placaRef = useRef(null);
   const creditoRef = useRef(null);
+  const cpfNumberRef = useRef(null);
 
   // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     name: '',
+    cpf: '',
     motherName: '',
     date: '',
     choice: '',
@@ -85,11 +87,15 @@ function Form() {
     var ano = formData.ano;      // Corrigido de "anoRef" para "ano"
     var placa = formData.placa;  // Corrigido de "placaRef" para "placa"
     var credito = formData.credito;  // Corrigido de "creditoRef" para "credito"
+    var cpf = formData.cpfNumber;  // Corrigido de "creditoRef" para "credito"
 
     var url =
       "https://wa.me/5511947946525?text=" +
       "Nome: " +
       name +
+      ",%0a" +
+      "CPF: " +
+      cpf +
       ",%0a" +
       "Nome da mãe: " +
       motherName +
@@ -137,6 +143,22 @@ function Form() {
               value={formData.name}
               onChange={handleInputChange}
               ref={nameRef}
+              required
+            />
+          </FormGroup>
+
+          <FormGroup className="mb-3">
+            <Label htmlFor="cpfNumber">CPF:</Label>
+            <InputMask
+              mask="999.999.999-99"
+              maskChar="_"
+              id="cpfNumber"
+              name="cpfNumber"
+              className="form-control"
+              placeholder="Digite seu CPF..."
+              value={formData.cpfNumber}
+              onChange={handleInputChange}
+              ref={cpfNumberRef}
               required
             />
           </FormGroup>
