@@ -87,7 +87,7 @@ function Form() {
     var credito = formData.credito;  // Corrigido de "creditoRef" para "credito"
 
     var url =
-      "https://wa.me/11947946525?text=" +
+      "https://wa.me/5511947946525?text=" +
       "Nome: " +
       name +
       ",%0a" +
